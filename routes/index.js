@@ -5,8 +5,6 @@ var Client = require('node-rest-client').Client;
 var client = new Client();
 
 exports.user = function(req, res){
-	handleError(req);
-	
 	client.get("http://localhost:8080/greeting", function(data, response){
 		//console.log(data);
 		console.log("Request Message : "+res.statusCode);
@@ -17,28 +15,19 @@ exports.user = function(req, res){
 };
 
 exports.getPersonDetailsById = function(req, res){
-	handleError(req);
-	
-	client.get("http://localhost:8080/person/11", function(data, response){
-		var jsonObj = JSON.parse(data.toString());
-		console.log(jsonObj);
+	client.get("http://localhost:8080/person/11", (data, response) => {
+		console.log(data);
 		res.json(data);
 	});
 };
 
 exports.getPersonDetails = function(req,res){
-	handleError(req);
 	client.get("http://localhost:8080/person", function(data, response){
 		console.log(data);
 		res.json(data);
 	});
 };
 
-exports.handleError = function(req){
-	req.on("error", function(e) {
-		console.log("Error Occured... "+e);
-	})
-};
 /*exports.getPersonDetailById = function(req, res){
 	
 }*/

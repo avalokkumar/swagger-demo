@@ -1,6 +1,7 @@
 'use strict';
 
 var SwaggerExpress = require('swagger-express-mw');
+var errorHandler = require('express-error-handler');
 var app = require('express')();
 var routes = require('./routes');
 module.exports = app; // for testing
@@ -9,7 +10,9 @@ var config = {
   appRoot: __dirname // required config
 };
 
-SwaggerExpress.create(config, function(err, swaggerExpress) {
+app.use(errorHandler());
+
+SwaggerExpress.create(config, (err, swaggerExpress) => {
   if (err) { throw err; }
 
   // install middleware
@@ -17,11 +20,12 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
 
   var port = process.env.PORT || 10010;
   
-  	app.get("/user", routes.user);
-	app.get("/persons/11", routes.getPersonDetailsById);
-	
-	app.get("/persons", routes.getPersonDetails);
+  app.get("/user", routes.user);
+  app.get("/persons/11", routes.getPersonDetailsById);
 
+  app.get("/persons", routes.getPersonDetails);
+  //app.get("/", routes.handleError);
+  
   app.listen(port, (err) => {
 	  console.log("Server listening to port "+port);
   });

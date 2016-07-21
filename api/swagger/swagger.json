@@ -47,6 +47,48 @@
                 }
             }
         },
+        "/persons/11": {
+            "get": {
+                "description": "Returns the person details based on his Id",
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/HelloWorldResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+        "get": {
+            "description": "Returns 'Hello' Text",
+            "parameters": [
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success",
+                    "schema": {
+                        "$ref": "#/definitions/HelloWorldResponse"
+                    }
+                },
+                "default": {
+                    "description": "Error",
+                    "schema": {
+                        "$ref": "#/definitions/ErrorResponse"
+                    }
+                }
+            }
+        }
+    },
         "/swagger": {
             "x-swagger-pipe": "swagger_raw"
         }
