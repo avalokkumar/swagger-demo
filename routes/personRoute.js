@@ -8,7 +8,8 @@ module.exports = function(persons) {
     }, mailSender = require("../api/utilities/emailsender.js")(mailInfo);
     for (var number in persons) persons[number] = person(persons[number]);
     functions.getPersonDetails = function(req, res) {
-        var personId = req.param("personId");
+        var personId = req.params.personId;
+        console.log("[personID] "+personId);
         console.log("persons[personID] :: "+persons["person" + personId]);
         "undefined" === persons["person" + personId] ? res.status(404).json({
             status: "error"
@@ -17,7 +18,7 @@ module.exports = function(persons) {
         res.json(persons["person" + personId].getPersonDetails()));
     }, 
     functions.getFriendsInfo = function(req, res) {
-        var personId = req.param("personId");
+        var personId = req.params.personId;
         "undefined" === persons["person" + personId] ? res.status(404).json({
             status: "error"
         }) : (console.log("has own property : " + persons["person" + personId].hasOwnProperty("getFriendsDetail")), 

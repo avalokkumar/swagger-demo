@@ -9,7 +9,7 @@ module.exports = function(flights, persons) {
     var config = {
         appRoot: __dirname
     };
-    swagger.setAppHandler(app), swagger.configureSwaggerPaths("", "/api-docs", ""), 
+    swagger.configureSwaggerPaths("", "/api-docs", ""), 
     app.use(logger({path: "./logs/logfile.txt"})), app.use(express.static(path.join(__dirname, "dist"))),
     app.use(bodyParser.json()), app.use(function (req, res, next) {
 		res.set('X-Powered-By', 'Flight Tracker');
