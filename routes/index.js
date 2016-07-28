@@ -6,7 +6,6 @@ var client = new Client();
 
 exports.user = function(req, res){
 	client.get("http://localhost:8080/greeting", function(data, response){
-		//console.log(data);
 		console.log("Request Message : "+res.statusCode);
 		console.log(data);
 		//res.set('Content-Type', 'application/xml');
@@ -27,7 +26,3 @@ exports.getPersonDetails = function(req,res){
 		res.json(data);
 	});
 };
-
-/*exports.getPersonDetailById = function(req, res){
-	
-}*/
